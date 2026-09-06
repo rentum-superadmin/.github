@@ -1,0 +1,21 @@
+name: Feature / change
+description: New behaviour or a change to existing behaviour
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: role
+    attributes:
+      label: Primary role affected
+      options: [Super Admin, Admin, Owner, Warden, Resident, Engineering]
+  - type: textarea
+    id: story
+    attributes:
+      label: User story and acceptance criteria
+      placeholder: As a warden I want … so that …. Done when ….
+    validations:
+      required: true
+  - type: input
+    id: plan
+    attributes:
+      label: Plan reference
+      placeholder: Backend plan §6.3 / Web plan W3 / Mobile plan M4

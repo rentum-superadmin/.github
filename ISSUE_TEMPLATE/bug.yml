@@ -1,0 +1,23 @@
+name: Bug report
+description: Something is broken
+labels: [bug]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [api, web, mobile, infra, docs]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Steps, expected vs actual. Include the X-Request-Id from the response if you have it.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version / build
+      placeholder: api-v0.3.1, web-v0.2.0, mobile 1.0.0 (42)

@@ -1,0 +1,33 @@
+name: Java CI (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      java-version:
+        type: string
+        default: '21'
+      maven-args:
+        type: string
+        default: '-B -ntp verify'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ inputs.java-version }}
+          cache: maven
+      - run: mvn ${{ inputs.maven-args }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reports
+          path: |
+            target/site/jacoco*/
+            target/surefire-reports/
+            target/failsafe-reports/
+          retention-days: 14
